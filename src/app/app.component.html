@@ -1,2 +1,5 @@
 <app-header></app-header>
-<app-choose-location (click)="closeModal($event)"></app-choose-location>
+<app-choose-location
+  *ngIf="isShowed"
+  (click)="closeModal($event)"
+></app-choose-location>
