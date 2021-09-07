@@ -13,13 +13,28 @@ import { IAppState } from 'src/app/core/store/state/app.state';
 export class InfoBlockComponent implements OnInit {
   public location = this.store.pipe(select(selectSelectedLocation));
 
+  public contactsShowed = false;
+
   constructor(private store: Store<IAppState>) {}
 
   public ngOnInit(): void {
     this.store.dispatch(new GetInitialLocation());
+    document.body.addEventListener('click', this.hideMoreContacts.bind(this));
   }
 
   public chooseCity() {
     this.store.dispatch(new ShowLocationModal());
+  }
+
+  public showMoreContacts() {
+    if (this.contactsShowed) return;
+
+    setTimeout(() => {
+      this.contactsShowed = true;
+    }, 0);
+  }
+
+  public hideMoreContacts() {
+    this.contactsShowed = false;
   }
 }

@@ -4,6 +4,10 @@ import {
   initialLocationModalState,
 } from './location-modal.state';
 import { ILocationState, initialLocationState } from './location.state';
+// import {
+//   IMoreContactsState,
+//   initialMoreContactsState,
+// } from './more-contacts-visibility.state';
 
 export interface IAppState {
   router?: RouterReducerState;

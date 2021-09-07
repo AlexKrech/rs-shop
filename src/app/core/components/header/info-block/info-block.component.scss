@@ -1,4 +1,5 @@
 :host {
+  position: relative;
   display: flex;
   align-items: center;
   max-width: 1090px;
@@ -8,6 +9,7 @@
 
 .info-block-wrapper {
   width: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -48,6 +50,55 @@
     column-gap: 5px;
   }
 
+  &__contact-list-additional {
+    position: absolute;
+    top: 30px;
+    right: 15px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 10px 0;
+
+    list-style-type: none;
+
+    box-shadow: 0 4px 12px 0 rgb(41 44 51 / 12%), 0 2px 2px 0 rgb(41 44 51 / 4%);
+    z-index: 15;
+  }
+
+  &__contact-additional {
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &__contact-list-additional &__contact_hovered:hover {
+    background-color: rgba(235, 237, 240, 0.8);
+  }
+
+  &__contact_hovered:hover {
+    cursor: pointer;
+    color: #e52e6b;
+  }
+
+  &__contact-summary {
+    position: relative;
+    margin-top: 10px;
+    padding-left: 55px;
+  }
+
+  &__contact-summary:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    width: 160px;
+    border-top: 1px solid rgb(211, 211, 211);
+    pointer-events: none;
+  }
+
   &__work-time-wrapper {
     display: flex;
     font-size: 10px;
@@ -67,4 +118,23 @@
   right: 0;
   border: 4px solid transparent;
   border-top: 5px solid black;
+}
+
+.viber-ico {
+  color: #7c53a6;
+}
+.life-ico {
+  color: #052992;
+}
+
+.telegram-ico {
+  fill: white;
+  color: #39a9e0;
+}
+
+.info-block {
+  &__contact_hovered:hover .viber-ico,
+  &__contact_hovered:hover .telegram-ico {
+    color: #e52e6b;
+  }
 }
