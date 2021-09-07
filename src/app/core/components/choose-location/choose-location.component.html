@@ -6,13 +6,32 @@
   </p>
   <label class="modal__input-wrapper" for="">
     Населенный пункт
-    <input class="modal__input" type="text" />
+    <input
+      #input
+      class="modal__input"
+      type="text"
+      (input)="searchLocations(input.value)"
+      [(ngModel)]="locationInputValue"
+    />
   </label>
+
+  <div *ngIf="cityList$ | async" class="modal__location-list-wrap">
+    <ul class="modal__location-list">
+      <li
+        *ngFor="let city of cityList$ | async"
+        class="modal__location-list-item"
+        (click)="chooseLocation(city.name)"
+      >
+        {{ city.name }}
+      </li>
+    </ul>
+  </div>
   <input
     class="modal__submit-btn"
     type="submit"
     color="primary"
     value="Сохранить"
+    (click)="submitLocation(input.value)"
   />
   <button mat-button class="modal__close-btn" (click)="closeModal()"></button>
 </div>

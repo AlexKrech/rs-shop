@@ -8,3 +8,8 @@ export const selectSelectedLocation = createSelector(
   selectLocation,
   (state: ILocationState) => state.selectedLocation
 );
+
+export const selectLocationList = createSelector(
+  selectLocation,
+  (state: ILocationState) => state.locationList
+);

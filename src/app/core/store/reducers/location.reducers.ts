@@ -12,12 +12,26 @@ export const locationReducers = (
         selectedLocation: action.payload,
       };
     }
-    // case EVideoActions.GetVideoCardSuccess: {
-    //   return {
-    //     ...state,
-    //     selectedVideoCard: action.payload,
-    //   };
-    // }
+    case ELocationActions.DeleteLocation: {
+      return {
+        ...state,
+        locationList: null,
+      };
+    }
+    case ELocationActions.GetInitialLocationSuccess: {
+      return {
+        ...state,
+        selectedLocation: action.payload,
+      };
+    }
+
+    case ELocationActions.FethLocationsSuccess: {
+      return {
+        ...state,
+        locationList: action.payload,
+      };
+    }
+
     default:
       return state;
   }

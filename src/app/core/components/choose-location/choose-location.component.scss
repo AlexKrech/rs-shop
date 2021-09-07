@@ -41,6 +41,9 @@
 
   &__input {
     height: 40px;
+
+    padding-left: 15px;
+
     outline: none;
     border: 0.5px #b0b3b8 solid;
   }
@@ -88,5 +91,43 @@
     border-radius: 4px;
     color: white;
     background-color: #07c;
+  }
+
+  &__location-list-wrap {
+    width: 87%;
+
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: white;
+  }
+
+  &__location-list {
+    min-height: 100px;
+    max-height: 200px;
+
+    padding-left: 0;
+
+    list-style-type: none;
+
+    overflow: scroll;
+    overflow-x: visible;
+  }
+
+  &__location-list-item {
+    height: 40px;
+    padding-left: 15px;
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__location-list-item:hover {
+    height: 40px;
+
+    cursor: pointer;
+    background-color: rgba(235, 237, 240, 0.5);
   }
 }

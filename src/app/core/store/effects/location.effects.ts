@@ -1,36 +1,44 @@
-// import { Injectable } from '@angular/core';
-// import { Actions, createEffect, ofType } from '@ngrx/effects';
-// import { select, Store } from '@ngrx/store';
-// import { of } from 'rxjs';
-// import { map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
+import { debounceTime, filter, switchMap } from 'rxjs/operators';
+import { LocationService } from '../../services/location.service';
 
-// import {
-//   ELocationActions,
-//   ChooseLocation,
-//   ChooseLocationSuccess,
-// } from '../actions/location.actions';
-// import { selectSelectedLocation } from '../selectors/location.selector';
-// import { IAppState } from '../state/app.state';
+import {
+  ELocationActions,
+  FethLocations,
+  FethLocationsSuccess,
+  GetInitialLocation,
+  GetInitialLocationSuccess,
+} from '../actions/location.actions';
+import { IAppState } from '../state/app.state';
 
-// @Injectable()
-// export class LocationEffects {
-//   chooseLocation = createEffect(() =>
-//     this.actions$.pipe(
-//       ofType<ChooseLocation>(ELocationActions.ChooseLocation),
-//       map((action) => action.payload),
-//       withLatestFrom(this.store.pipe(select(selectSelectedLocation))),
-//       switchMap(([locationName, locationSelector]) => {
-//         const selectedVideoCard = videoCards?.find(
-//           (videoCard) => videoCard.id === id
-//         );
-//         return of(new GetVideoCardSuccess(selectedVideoCard!));
-//       })
-//     )
-//   );
+@Injectable()
+export class LocationEffects {
+  chooseLocation = createEffect(() =>
+    this.actions$.pipe(
+      ofType<GetInitialLocation>(ELocationActions.GetInitialLocation),
+      switchMap(() => this.locationService.getLocationByIp()),
+      switchMap((data) => of(new GetInitialLocationSuccess(data)))
+    )
+  );
 
-//   constructor(
-//     private actions$: Actions,
-//     private youtubeService: SearchResponseService,
-//     private store: Store<IAppState>
-//   ) {}
-// }
+  fethLocation = createEffect(() =>
+    this.actions$.pipe(
+      ofType<FethLocations>(ELocationActions.FethLocations),
+      filter((action) => action.payload.length >= 2),
+      debounceTime(500),
+      switchMap((action) =>
+        this.locationService.getLocationSearchString(action.payload)
+      ),
+      switchMap((data) => of(new FethLocationsSuccess(data)))
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private locationService: LocationService,
+    private store: Store<IAppState>
+  ) {}
+}

@@ -1,8 +1,13 @@
 import { Action } from '@ngrx/store';
+import { ILocationResponseData } from 'src/app/shared/models/location-by-search-string';
 
 export enum ELocationActions {
   ChooseLocation = 'Choose Location',
-  ChooseLocationSuccess = 'Choose Location Success',
+  DeleteLocation = 'Delete Location',
+  GetInitialLocation = 'Get Initial Location',
+  GetInitialLocationSuccess = 'Get Initial Location Success',
+  FethLocations = 'Feth Locations',
+  FethLocationsSuccess = 'Feth Locations Success',
 }
 
 export class ChooseLocation implements Action {
@@ -11,10 +16,36 @@ export class ChooseLocation implements Action {
   constructor(public payload: string) {}
 }
 
-export class ChooseLocationSuccess implements Action {
-  public readonly type = ELocationActions.ChooseLocationSuccess;
+export class DeleteLocation implements Action {
+  public readonly type = ELocationActions.DeleteLocation;
+}
+
+export class FethLocations implements Action {
+  public readonly type = ELocationActions.FethLocations;
+
+  constructor(public payload: string) {}
+}
+// TODO: action wint this name shouldn't contain null as a payload
+export class FethLocationsSuccess implements Action {
+  public readonly type = ELocationActions.FethLocationsSuccess;
+
+  constructor(public payload: ILocationResponseData[] | null) {}
+}
+
+export class GetInitialLocation implements Action {
+  public readonly type = ELocationActions.GetInitialLocation;
+}
+
+export class GetInitialLocationSuccess implements Action {
+  public readonly type = ELocationActions.GetInitialLocationSuccess;
 
   constructor(public payload: string) {}
 }
 
-export type LocationAction = ChooseLocation | ChooseLocationSuccess;
+export type LocationAction =
+  | ChooseLocation
+  | DeleteLocation
+  | GetInitialLocation
+  | GetInitialLocationSuccess
+  | FethLocations
+  | FethLocationsSuccess;

@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
 
   public closeModal(event: Event): void {
     const target = <HTMLElement>event.target;
-    if (target.closest('.modal')) {
+    if (
+      target.closest('.modal') ||
+      target.closest('.modal__location-list-wrap')
+    ) {
       return;
     }
     this.store.dispatch(new HideLocationModal());
