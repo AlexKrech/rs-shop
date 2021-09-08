@@ -120,6 +120,15 @@
   border-top: 5px solid black;
 }
 
+.dropdown-content_open::before {
+  content: " ";
+  position: absolute;
+  top: 3px;
+  right: 0;
+  border: 4px solid transparent;
+  border-bottom: 5px solid black;
+}
+
 .viber-ico {
   color: #7c53a6;
 }

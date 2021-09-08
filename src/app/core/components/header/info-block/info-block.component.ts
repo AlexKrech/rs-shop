@@ -29,12 +29,21 @@ export class InfoBlockComponent implements OnInit {
   public showMoreContacts() {
     if (this.contactsShowed) return;
 
+    const moreContactsBtn = document.querySelector(
+      '.contact-list__more-contacts-btn'
+    );
+
     setTimeout(() => {
       this.contactsShowed = true;
+      moreContactsBtn?.classList.add('dropdown-content_open');
     }, 0);
   }
 
   public hideMoreContacts() {
     this.contactsShowed = false;
+    const moreContactsBtn = document.querySelector(
+      '.contact-list__more-contacts-btn'
+    );
+    moreContactsBtn?.classList.remove('dropdown-content_open');
   }
 }
