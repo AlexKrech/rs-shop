@@ -78,10 +78,12 @@
   <label class="nav-block__input-wrapper" for="nav-block__input">
     <button class="nav-block__input-close-btn"></button>
     <input
+      #input
       id="nav-block__input"
       class="nav-block__input"
       type="text"
       placeholder="Поиск товаров"
+      (input)="searchCategory(input.value)"
     />
     <button class="nav-block__input-search-bth">
       <svg
@@ -99,6 +101,16 @@
       </svg>
     </button>
   </label>
+
+  <ul *ngIf="subcategory$ | async" class="nav-block__subcategory-list">
+    <li
+      *ngFor="let city of subcategory$ | async"
+      class="nav-block__subcategory-list-item"
+    >
+      <a href="" class="nav-block__subcategory-list-link" >{{ city.name }}</a>
+    </li>
+  </ul>
+
   <button class="nav-block__btn nav-block__account-btn" mat-stroked-button>
     <svg
       xmlns="http://www.w3.org/2000/svg"

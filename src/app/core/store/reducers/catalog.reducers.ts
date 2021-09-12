@@ -39,6 +39,20 @@ export const catalogReducers = (
       };
     }
 
+    case ECatalogActions.SearchSubCategoryListSuccess: {
+      return {
+        ...state,
+        subcategoryList: action.payload,
+      };
+    }
+
+    case ECatalogActions.ClearSubCategoryList: {
+      return {
+        ...state,
+        subcategoryList: null,
+      };
+    }
+
     default:
       return state;
   }

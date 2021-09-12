@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ICategory } from '../state.models';
+import { ICategory, ISubCategories } from '../state.models';
 
 export enum ECatalogActions {
   ShowCatalog = 'Show Catalog',
@@ -9,6 +9,9 @@ export enum ECatalogActions {
   SelectInitCategory = 'Select Init Category',
   SelectCategory = 'Select Category',
   SelectCategorySuccess = 'Select Category Success',
+  SearchSubCategoryList = 'Search Locations',
+  SearchSubCategoryListSuccess = 'Search Locations Success',
+  ClearSubCategoryList = 'Clear SubCategory List',
 }
 
 export class ShowCatalog implements Action {
@@ -45,6 +48,23 @@ export class SelectCategorySuccess implements Action {
   constructor(public payload: ICategory) {}
 }
 
+export class SearchSubCategoryList implements Action {
+  public readonly type = ECatalogActions.SearchSubCategoryList;
+
+  constructor(public payload: string) {}
+}
+
+// TODO: action wint this name shouldn't contain null as a payload
+export class SearchSubCategoryListSuccess implements Action {
+  public readonly type = ECatalogActions.SearchSubCategoryListSuccess;
+
+  constructor(public payload: ISubCategories[] | null) {}
+}
+
+export class ClearSubCategoryList implements Action {
+  public readonly type = ECatalogActions.ClearSubCategoryList;
+}
+
 export type CatalogAction =
   | ShowCatalog
   | HideCatalog
@@ -52,4 +72,7 @@ export type CatalogAction =
   | FethCategoriesSuccess
   | SelectInitCategory
   | SelectCategory
-  | SelectCategorySuccess;
+  | SelectCategorySuccess
+  | SearchSubCategoryList
+  | SearchSubCategoryListSuccess
+  | ClearSubCategoryList;

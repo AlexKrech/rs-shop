@@ -11,7 +11,7 @@ export interface ICategory {
   subCategories: ISubCategories[];
 }
 
-interface ISubCategories {
+export interface ISubCategories {
   id: string;
   name: string;
 }

@@ -3,12 +3,19 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { debounceTime, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import {
+  debounceTime,
+  map,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { CategoriesService } from '../../services/categories.service';
 import {
   ECatalogActions,
   FethCategories,
   FethCategoriesSuccess,
+  SearchSubCategoryList,
+  SearchSubCategoryListSuccess,
   SelectCategory,
   SelectCategorySuccess,
 } from '../actions/catalog.actions';
@@ -41,6 +48,17 @@ export class CatalogEffects {
       ofType<SelectCategory>(ECatalogActions.SelectCategory),
       debounceTime(500),
       switchMap((data) => of(new SelectCategorySuccess(data.payload)))
+    )
+  );
+
+  searchCategory = createEffect(() =>
+    this.actions$.pipe(
+      ofType<SearchSubCategoryList>(ECatalogActions.SearchSubCategoryList),
+      debounceTime(500),
+      switchMap((action) =>
+        this.categoriesService.fethSubCategories(action.payload)
+      ),
+      switchMap((data) => of(new SearchSubCategoryListSuccess(data)))
     )
   );
 

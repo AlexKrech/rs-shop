@@ -18,3 +18,8 @@ export const selectCategory = createSelector(
   selectLocation,
   (state: ICatalogState) => state.selectedCategory
 );
+
+export const selectSubCategoryList = createSelector(
+  selectLocation,
+  (state: ICatalogState) => state.subcategoryList
+);

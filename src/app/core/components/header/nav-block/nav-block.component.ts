@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { CategoriesService } from 'src/app/core/services/categories.service';
 import {
+  ClearSubCategoryList,
   FethCategories,
   HideCatalog,
+  SearchSubCategoryList,
   SelectInitCategory,
   ShowCatalog,
 } from 'src/app/core/store/actions/catalog.actions';
+import { selectSubCategoryList } from 'src/app/core/store/selectors/catalog.selector';
 import { IAppState } from 'src/app/core/store/state/app.state';
 
 @Component({
@@ -16,6 +19,8 @@ import { IAppState } from 'src/app/core/store/state/app.state';
 })
 export class NavBlockComponent implements OnInit {
   public catalogShowed = false;
+
+  public subcategory$ = this.store.pipe(select(selectSubCategoryList));
 
   constructor(
     private store: Store<IAppState>,
@@ -55,5 +60,13 @@ export class NavBlockComponent implements OnInit {
 
     const catalogBtn = document.querySelector('.nav-block__catalog-btn');
     catalogBtn?.classList.remove('nav-block__btn_open');
+  }
+
+  public searchCategory(searchString: string) {
+    if (searchString.length > 2) {
+      this.store.dispatch(new SearchSubCategoryList(searchString));
+    } else {
+      this.store.dispatch(new ClearSubCategoryList());
+    }
   }
 }
