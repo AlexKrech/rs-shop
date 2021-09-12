@@ -8,6 +8,7 @@ export enum ELocationActions {
   GetInitialLocationSuccess = 'Get Initial Location Success',
   FethLocations = 'Feth Locations',
   FethLocationsSuccess = 'Feth Locations Success',
+  ClearLocations = 'Clear Locations',
 }
 
 export class ChooseLocation implements Action {
@@ -42,10 +43,15 @@ export class GetInitialLocationSuccess implements Action {
   constructor(public payload: string) {}
 }
 
+export class ClearLocations implements Action {
+  public readonly type = ELocationActions.ClearLocations;
+}
+
 export type LocationAction =
   | ChooseLocation
   | DeleteLocation
   | GetInitialLocation
   | GetInitialLocationSuccess
   | FethLocations
-  | FethLocationsSuccess;
+  | FethLocationsSuccess
+  | ClearLocations;

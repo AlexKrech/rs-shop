@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { debounceTime, filter, switchMap } from 'rxjs/operators';
+import { debounceTime, switchMap } from 'rxjs/operators';
 import { LocationService } from '../../services/location.service';
 
 import {
@@ -27,7 +27,6 @@ export class LocationEffects {
   fethLocation = createEffect(() =>
     this.actions$.pipe(
       ofType<FethLocations>(ELocationActions.FethLocations),
-      filter((action) => action.payload.length >= 2),
       debounceTime(500),
       switchMap((action) =>
         this.locationService.getLocationSearchString(action.payload)

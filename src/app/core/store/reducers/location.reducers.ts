@@ -32,6 +32,13 @@ export const locationReducers = (
       };
     }
 
+    case ELocationActions.ClearLocations: {
+      return {
+        ...state,
+        locationList: null,
+      };
+    }
+
     default:
       return state;
   }

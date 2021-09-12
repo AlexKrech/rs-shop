@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { HideLocationModal } from '../../store/actions/location-modal.actions';
 import {
   ChooseLocation,
+  ClearLocations,
   DeleteLocation,
   FethLocations,
 } from '../../store/actions/location.actions';
@@ -27,7 +28,11 @@ export class ChooseLocationComponent {
   }
 
   public searchLocations(searchString: string) {
-    this.store.dispatch(new FethLocations(searchString));
+    if (searchString.length >= 2) {
+      this.store.dispatch(new FethLocations(searchString));
+    } else {
+      this.store.dispatch(new ClearLocations());
+    }
   }
 
   public chooseLocation(searchString: string) {
