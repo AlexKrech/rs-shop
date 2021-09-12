@@ -1,9 +1,11 @@
 :host {
+  display: block;
+  position: relative;
   background-color: #f7f8fa;
 }
 
 .delimiter {
-  width: 100vw;
+  width: 100%;
   border-top: 1px solid rgb(211, 211, 211);
   pointer-events: none;
 }

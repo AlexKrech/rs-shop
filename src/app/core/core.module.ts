@@ -8,6 +8,8 @@ import { InfoBlockComponent } from './components/header/info-block/info-block.co
 import { ChooseLocationComponent } from './components/choose-location/choose-location.component';
 import { NavBlockComponent } from './components/header/nav-block/nav-block.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
+import { SubCategoriesComponent } from './components/sub-categories/sub-categories.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ChooseLocationComponent,
     NavBlockComponent,
     NotFoundComponent,
+    CatalogComponent,
+    SubCategoriesComponent
   ],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [HeaderComponent, ChooseLocationComponent, NotFoundComponent],

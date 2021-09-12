@@ -1,0 +1,20 @@
+<div *ngIf="isShowed | async" class="catalog__backdrop">
+  <div class="catalog__content-wrapper">
+    <div class="catalog__content">
+      <ul class="catalog__category-list">
+        <li
+          class="catalog__category-item"
+          *ngFor="let category of categories | async"
+          (mouseover)="selectCategory(category)"
+        >
+          <div
+            class="catalog__category-item-ico-wrapper"
+            [innerHtml]="category.ico"
+          ></div>
+          <span> {{ category.name }}</span>
+        </li>
+      </ul>
+      <app-sub-categories></app-sub-categories>
+    </div>
+  </div>
+</div>

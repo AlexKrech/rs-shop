@@ -1,23 +1,22 @@
 import { RouterReducerState } from '@ngrx/router-store';
+import { ICatalogState, initialCatalogState } from './catalog.state';
 import {
   ILocationModalState,
   initialLocationModalState,
 } from './location-modal.state';
 import { ILocationState, initialLocationState } from './location.state';
-// import {
-//   IMoreContactsState,
-//   initialMoreContactsState,
-// } from './more-contacts-visibility.state';
 
 export interface IAppState {
   router?: RouterReducerState;
   location: ILocationState;
   locationModal: ILocationModalState;
+  catalog: ICatalogState;
 }
 
 export const initialAppState: IAppState = {
   location: initialLocationState,
   locationModal: initialLocationModalState,
+  catalog: initialCatalogState,
 };
 
 export function getinitialState(): IAppState {

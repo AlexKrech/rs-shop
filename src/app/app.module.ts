@@ -17,6 +17,7 @@ import { LocationEffects } from './core/store/effects/location.effects';
 import { ShopFeatureModule } from './shop-feature/shop-feature.module';
 import { MainComponent } from './shop-feature/pages/main/main.component';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
+import { CatalogEffects } from './core/store/effects/catalog.effects';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     ShopFeatureModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([LocationEffects]),
+    EffectsModule.forRoot([LocationEffects, CatalogEffects]),
     !environment.production
       ? StoreDevtoolsModule.instrument({ logOnly: environment.production })
       : [],

@@ -58,8 +58,12 @@
       </defs>
     </svg>
   </a>
-  <button class="nav-block__btn" mat-stroked-button>
-    <div class="nav-block__catalog-btn-ico">
+  <button
+    class="nav-block__btn nav-block__catalog-btn"
+    mat-stroked-button
+    (click)="showCatalog()"
+  >
+    <div *ngIf="!catalogShowed" class="nav-block__catalog-btn-ico">
       <div class="nav-block__catalog-btn-ico-inner-elem-wrapper">
         <div class="nav-block__catalog-btn-ico-inner-elem"></div>
         <div class="nav-block__catalog-btn-ico-inner-elem"></div>
@@ -67,6 +71,8 @@
         <div class="nav-block__catalog-btn-ico-inner-elem"></div>
       </div>
     </div>
+    <button *ngIf="catalogShowed" class="nav-block__input-close-btn"></button>
+
     <span>Каталог товалов</span>
   </button>
   <label class="nav-block__input-wrapper" for="nav-block__input">

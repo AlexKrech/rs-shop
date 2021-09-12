@@ -2,8 +2,6 @@
   display: block;
 
   max-width: 100%;
-
-  background-color: #f7f8fa;
 }
 
 .nav-block {
@@ -40,12 +38,20 @@
 
   &__btn:hover {
     cursor: pointer;
+    border-color: white;
     background-color: white;
   }
 
-  &__btn:hover {
-    border-color: white;
-    background-color: white;
+  &__btn_open {
+    border-color: transparent;
+    background: #ebedf0;
+    color: #909399;
+  }
+
+  &__btn_open:hover {
+    border-color: transparent;
+    background: #ebedf0;
+    color: #909399;
   }
 
   &__account-btn {
