@@ -15,8 +15,12 @@
     padding: 6px;
     width: 300px;
   }
-  &__item:hover {
-    cursor: pointer;
+  &__subcategory-list-link {
+    display: block;
+    color: black;
+    text-decoration: none;
+  }
+  &__subcategory-list-link:hover {
     color: #d62761;
   }
 }

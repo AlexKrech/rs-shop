@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { CategoriesService } from 'src/app/core/services/categories.service';
 import {
-  ClearSubCategoryList,
   FethCategories,
   HideCatalog,
-  SearchSubCategoryList,
   SelectInitCategory,
+  SelectSubCategory,
   ShowCatalog,
 } from 'src/app/core/store/actions/catalog.actions';
-import { selectSubCategoryList } from 'src/app/core/store/selectors/catalog.selector';
+import { selectCategoriesList } from 'src/app/core/store/selectors/catalog.selector';
+import { ICategory, ISubCategoryInfo } from 'src/app/core/store/state.models';
 import { IAppState } from 'src/app/core/store/state/app.state';
 
 @Component({
@@ -20,15 +19,32 @@ import { IAppState } from 'src/app/core/store/state/app.state';
 export class NavBlockComponent implements OnInit {
   public catalogShowed = false;
 
-  public subcategory$ = this.store.pipe(select(selectSubCategoryList));
+  public categories: ICategory[] | null = null;
 
-  constructor(
-    private store: Store<IAppState>,
-    private categoriesService: CategoriesService
-  ) {}
+  public subcategories: ISubCategoryInfo[] | null = null;
+
+  public searchString: string = '';
+
+  constructor(private store: Store<IAppState>) {}
 
   public ngOnInit(): void {
     document.body.addEventListener('click', this.hideCatalog.bind(this));
+
+    this.store.pipe(select(selectCategoriesList)).subscribe((categories) => {
+      const subCategoriesList: ISubCategoryInfo[] = [];
+      this.categories = categories;
+      if (categories) {
+        categories.forEach((category) => {
+          subCategoriesList.push(...category.subCategories);
+        });
+
+        const filteredSubCategoriesList = subCategoriesList.filter((category) =>
+          category.name.toLowerCase().includes(this.searchString)
+        );
+
+        this.subcategories = filteredSubCategoriesList;
+      }
+    });
   }
 
   public showCatalog(): void {
@@ -62,11 +78,15 @@ export class NavBlockComponent implements OnInit {
     catalogBtn?.classList.remove('nav-block__btn_open');
   }
 
-  public searchCategory(searchString: string) {
-    if (searchString.length > 2) {
-      this.store.dispatch(new SearchSubCategoryList(searchString));
+  public searchCategory(searchString: string): void {
+    if (searchString.length >= 2) {
+      this.store.dispatch(new FethCategories());
     } else {
-      this.store.dispatch(new ClearSubCategoryList());
+      this.subcategories = null;
     }
+  }
+
+  public selectSubCategory(subCategory: ISubCategoryInfo) {
+    this.store.dispatch(new SelectSubCategory(subCategory));
   }
 }

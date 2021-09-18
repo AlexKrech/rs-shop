@@ -8,10 +8,10 @@ export interface ICategory {
   id: string;
   name: string;
   ico?: SafeHtml;
-  subCategories: ISubCategories[];
+  subCategories: ISubCategoryInfo[];
 }
 
-export interface ISubCategories {
+export interface ISubCategoryInfo {
   id: string;
   name: string;
 }
@@ -19,4 +19,21 @@ export interface ISubCategories {
 export interface ICategoryIco {
   id: string;
   icon: string;
+}
+
+export interface ISubCategoryItems {
+  id: string;
+  name: string;
+}
+
+export interface IShopItem {
+  id: string;
+  name: string;
+  imageUrls: [string, string];
+  availableAmount: number;
+  price: number;
+  rating: number;
+  description: string;
+  isInCart: boolean;
+  isFavorite: boolean;
 }

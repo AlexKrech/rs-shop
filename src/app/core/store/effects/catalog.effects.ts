@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import {
-  debounceTime,
-  map,
-  switchMap,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { debounceTime, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { CategoriesService } from '../../services/categories.service';
 import {
   ECatalogActions,
   FethCategories,
   FethCategoriesSuccess,
-  SearchSubCategoryList,
-  SearchSubCategoryListSuccess,
   SelectCategory,
   SelectCategorySuccess,
+  SelectSubCategory,
+  SelectSubCategorySuccess,
 } from '../actions/catalog.actions';
+import { selectCategoriesList } from '../selectors/catalog.selector';
+import { ISubCategoryInfo } from '../state.models';
 import { IAppState } from '../state/app.state';
 
 @Injectable()
@@ -51,15 +48,28 @@ export class CatalogEffects {
     )
   );
 
-  searchCategory = createEffect(() =>
-    this.actions$.pipe(
-      ofType<SearchSubCategoryList>(ECatalogActions.SearchSubCategoryList),
-      debounceTime(500),
-      switchMap((action) =>
-        this.categoriesService.fethSubCategories(action.payload)
-      ),
-      switchMap((data) => of(new SearchSubCategoryListSuccess(data)))
-    )
+  selectSubCategory = createEffect(
+    (actionData: ISubCategoryInfo | null = null) =>
+      this.actions$.pipe(
+        ofType<SelectSubCategory>(ECatalogActions.SelectSubCategory),
+        switchMap((action) => {
+          // eslint-disable-next-line no-param-reassign
+          actionData = action.payload;
+          return this.store.pipe(select(selectCategoriesList));
+        }),
+        map((categoryList) =>
+          categoryList?.find((category) =>
+            category.subCategories.includes(actionData!)
+          )
+        ),
+        switchMap((selectedCategory) =>
+          this.categoriesService.fethSubCategoryItems(
+            selectedCategory!.id,
+            actionData!.id
+          )
+        ),
+        switchMap((shopItemList) => of(new SelectSubCategorySuccess(shopItemList)))
+      )
   );
 
   constructor(

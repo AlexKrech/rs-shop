@@ -14,12 +14,12 @@ export const selectCategoriesList = createSelector(
   (state: ICatalogState) => state.categoriesList
 );
 
-export const selectCategory = createSelector(
+export const selecSelectedCategory = createSelector(
   selectLocation,
   (state: ICatalogState) => state.selectedCategory
 );
 
-export const selectSubCategoryList = createSelector(
+export const selectSelectedSubCategory = createSelector(
   selectLocation,
-  (state: ICatalogState) => state.subcategoryList
+  (state: ICatalogState) => state.selectedSubCategory
 );

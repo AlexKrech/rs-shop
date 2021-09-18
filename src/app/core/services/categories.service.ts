@@ -2,7 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ICategory, ICategoryIco, ISubCategories } from '../store/state.models';
+import {
+  ICategory,
+  ICategoryIco,
+  IShopItem,
+  ISubCategoryInfo,
+} from '../store/state.models';
 
 @Injectable({
   providedIn: 'root',
@@ -16,10 +21,10 @@ export class CategoriesService {
 
   public fethSubCategories(
     searchString: string
-  ): Observable<ICategory[] | ISubCategories[]> {
+  ): Observable<ICategory[] | ISubCategoryInfo[]> {
     return this.http.get<ICategory[]>('http://localhost:3004/categories').pipe(
       map((categories) => {
-        const subCategoriesList: ISubCategories[] = [];
+        const subCategoriesList: ISubCategoryInfo[] = [];
 
         categories.forEach((category) => {
           subCategoriesList.push(...category.subCategories);
@@ -38,5 +43,14 @@ export class CategoriesService {
 
   public fethCategoriesIco(): Observable<ICategoryIco[]> {
     return this.http.get<ICategoryIco[]>('../../../assets/categoryIcons.json');
+  }
+
+  public fethSubCategoryItems(
+    categoryId: string,
+    subCategoryId: string
+  ): Observable<IShopItem[]> {
+    return this.http.get<IShopItem[]>(
+      `http://localhost:3004/goods/category/${categoryId}/${subCategoryId}`
+    );
   }
 }

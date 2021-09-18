@@ -39,17 +39,17 @@ export const catalogReducers = (
       };
     }
 
-    case ECatalogActions.SearchSubCategoryListSuccess: {
+    case ECatalogActions.SelectSubCategory: {
       return {
         ...state,
-        subcategoryList: action.payload,
+        selectedSubCategory: action.payload,
       };
     }
 
-    case ECatalogActions.ClearSubCategoryList: {
+    case ECatalogActions.SelectSubCategorySuccess: {
       return {
         ...state,
-        subcategoryList: null,
+        selectedCategoryItems: action.payload,
       };
     }
 

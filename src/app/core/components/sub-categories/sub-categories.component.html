@@ -2,8 +2,16 @@
   <h2>{{ (category | async)!.name }}</h2>
 
   <ul class="subCategory__item-list">
-    <li class="subCategory__item" *ngFor="let subCategory of (category | async)!.subCategories">
-      {{ subCategory.name }}
+    <li
+      class="subCategory__item"
+      *ngFor="let subCategory of (category | async)!.subCategories"
+    >
+      <a
+        [routerLink]="['', subCategory.id]"
+        class="subCategory__subcategory-list-link"
+        (click)="selectSubCategory(subCategory)"
+        >{{ subCategory.name }}</a
+      >
     </li>
   </ul>
 </div>

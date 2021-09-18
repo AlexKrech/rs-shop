@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ICategory, ISubCategories } from '../state.models';
+import { ICategory, IShopItem, ISubCategoryInfo } from '../state.models';
 
 export enum ECatalogActions {
   ShowCatalog = 'Show Catalog',
@@ -9,9 +9,8 @@ export enum ECatalogActions {
   SelectInitCategory = 'Select Init Category',
   SelectCategory = 'Select Category',
   SelectCategorySuccess = 'Select Category Success',
-  SearchSubCategoryList = 'Search Locations',
-  SearchSubCategoryListSuccess = 'Search Locations Success',
-  ClearSubCategoryList = 'Clear SubCategory List',
+  SelectSubCategory = 'Selected SubCategory',
+  SelectSubCategorySuccess = 'Selected SubCategory Success',
 }
 
 export class ShowCatalog implements Action {
@@ -48,21 +47,16 @@ export class SelectCategorySuccess implements Action {
   constructor(public payload: ICategory) {}
 }
 
-export class SearchSubCategoryList implements Action {
-  public readonly type = ECatalogActions.SearchSubCategoryList;
+export class SelectSubCategory implements Action {
+  public readonly type = ECatalogActions.SelectSubCategory;
 
-  constructor(public payload: string) {}
+  constructor(public payload: ISubCategoryInfo) {}
 }
 
-// TODO: action wint this name shouldn't contain null as a payload
-export class SearchSubCategoryListSuccess implements Action {
-  public readonly type = ECatalogActions.SearchSubCategoryListSuccess;
+export class SelectSubCategorySuccess implements Action {
+  public readonly type = ECatalogActions.SelectSubCategorySuccess;
 
-  constructor(public payload: ISubCategories[] | null) {}
-}
-
-export class ClearSubCategoryList implements Action {
-  public readonly type = ECatalogActions.ClearSubCategoryList;
+  constructor(public payload: IShopItem[]) {}
 }
 
 export type CatalogAction =
@@ -73,6 +67,5 @@ export type CatalogAction =
   | SelectInitCategory
   | SelectCategory
   | SelectCategorySuccess
-  | SearchSubCategoryList
-  | SearchSubCategoryListSuccess
-  | ClearSubCategoryList;
+  | SelectSubCategory
+  | SelectSubCategorySuccess;

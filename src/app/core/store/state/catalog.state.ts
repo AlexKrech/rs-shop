@@ -1,15 +1,17 @@
-import { ICategory, ISubCategories } from '../state.models';
+import { ICategory, IShopItem, ISubCategoryInfo } from '../state.models';
 
 export interface ICatalogState {
   isCatalogModalShowed: boolean;
   categoriesList: ICategory[] | null;
-  subcategoryList: ISubCategories[] | null;
+  selectedSubCategory: ISubCategoryInfo | null;
   selectedCategory: ICategory | null;
+  selectedCategoryItems: IShopItem[] | null;
 }
 
 export const initialCatalogState: ICatalogState = {
   isCatalogModalShowed: false,
   categoriesList: null,
   selectedCategory: null,
-  subcategoryList: null,
+  selectedSubCategory: null,
+  selectedCategoryItems: null,
 };
