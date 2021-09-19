@@ -33,6 +33,8 @@ export class NavBlockComponent implements OnInit {
 
   public searchString: string = '';
 
+  public isAccountModalShowed = false;
+
   constructor(private store: Store<IAppState>, private router: Router) {}
 
   public ngOnInit(): void {
@@ -41,6 +43,8 @@ export class NavBlockComponent implements OnInit {
       'click',
       this.hideSubCategoryList.bind(this)
     );
+
+    document.body.addEventListener('click', this.hideMoreContacts.bind(this));
 
     this.store.pipe(select(selectCategoriesList)).subscribe((categories) => {
       const subCategoriesList: ISubCategoryInfo[] = [];
@@ -141,5 +145,24 @@ export class NavBlockComponent implements OnInit {
         text: searchString,
       },
     });
+  }
+
+  public showAccountModal(): void {
+    if (this.isAccountModalShowed) return;
+
+    const moreContactsBtn = document.querySelector('.nav-block__account-btn');
+
+    setTimeout(() => {
+      this.isAccountModalShowed = true;
+      moreContactsBtn?.classList.add('dropdown-content_open');
+    }, 0);
+  }
+
+  public hideMoreContacts() {
+    this.isAccountModalShowed = false;
+    const moreContactsBtn = document.querySelector(
+      '.nav-block__account-btn'
+    );
+    moreContactsBtn?.classList.remove('dropdown-content_open');
   }
 }
