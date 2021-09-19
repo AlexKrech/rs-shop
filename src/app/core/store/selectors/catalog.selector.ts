@@ -9,6 +9,11 @@ export const selectIsCatalogModalShowed = createSelector(
   (state: ICatalogState) => state.isCatalogModalShowed
 );
 
+export const selectIsSubCategoryListModalShowed = createSelector(
+  selectLocation,
+  (state: ICatalogState) => state.isSubCategoryListModalShowed
+);
+
 export const selectCategoriesList = createSelector(
   selectLocation,
   (state: ICatalogState) => state.categoriesList

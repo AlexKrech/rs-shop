@@ -85,6 +85,7 @@
       placeholder="Поиск товаров"
       [(ngModel)]="searchString"
       (input)="searchCategory(input.value)"
+      (focus)="showSubCategoryList()"
     />
     <button class="nav-block__input-search-bth">
       <svg
@@ -103,7 +104,10 @@
     </button>
   </label>
 
-  <ul *ngIf="subcategories" class="nav-block__subcategory-list">
+  <ul
+    *ngIf="subcategories && subCategoryListModalShowed"
+    class="nav-block__subcategory-list"
+  >
     <li
       *ngFor="let subcategory of subcategories"
       class="nav-block__subcategory-list-item"

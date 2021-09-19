@@ -4,6 +4,8 @@ import { ICategory, IShopItem, ISubCategoryInfo } from '../state.models';
 export enum ECatalogActions {
   ShowCatalog = 'Show Catalog',
   HideCatalog = 'Hide Catalog',
+  ShowSubCategoryList = 'Show SubCategory List',
+  HideSubCategoryList = 'Hide SubCategory List',
   FethCategories = 'Feth Categories',
   FethCategoriesSuccess = 'Feth Categories Success',
   SelectInitCategory = 'Select Init Category',
@@ -19,6 +21,14 @@ export class ShowCatalog implements Action {
 
 export class HideCatalog implements Action {
   public readonly type = ECatalogActions.HideCatalog;
+}
+
+export class ShowSubCategoryList implements Action {
+  public readonly type = ECatalogActions.ShowSubCategoryList;
+}
+
+export class HideSubCategoryList implements Action {
+  public readonly type = ECatalogActions.HideSubCategoryList;
 }
 
 export class FethCategories implements Action {
@@ -62,6 +72,8 @@ export class SelectSubCategorySuccess implements Action {
 export type CatalogAction =
   | ShowCatalog
   | HideCatalog
+  | ShowSubCategoryList
+  | HideSubCategoryList
   | FethCategories
   | FethCategoriesSuccess
   | SelectInitCategory

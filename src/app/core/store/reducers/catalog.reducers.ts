@@ -18,6 +18,18 @@ export const catalogReducers = (
         isCatalogModalShowed: false,
       };
     }
+    case ECatalogActions.ShowSubCategoryList: {
+      return {
+        ...state,
+        isSubCategoryListModalShowed: true,
+      };
+    }
+    case ECatalogActions.HideSubCategoryList: {
+      return {
+        ...state,
+        isSubCategoryListModalShowed: false,
+      };
+    }
     case ECatalogActions.FethCategoriesSuccess: {
       return {
         ...state,
