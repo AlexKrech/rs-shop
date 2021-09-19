@@ -10,6 +10,7 @@ import { NavBlockComponent } from './components/header/nav-block/nav-block.compo
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { SubCategoriesComponent } from './components/sub-categories/sub-categories.component';
+import { OrderBasketComponent } from './pages/order-basket/order-basket.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,15 @@ import { SubCategoriesComponent } from './components/sub-categories/sub-categori
     NavBlockComponent,
     NotFoundComponent,
     CatalogComponent,
-    SubCategoriesComponent
+    SubCategoriesComponent,
+    OrderBasketComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule],
-  exports: [HeaderComponent, ChooseLocationComponent, NotFoundComponent],
+  exports: [
+    HeaderComponent,
+    ChooseLocationComponent,
+    NotFoundComponent,
+    OrderBasketComponent,
+  ],
 })
 export class CoreModule {}
