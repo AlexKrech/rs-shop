@@ -76,7 +76,10 @@
     <span>Каталог товалов</span>
   </button>
   <label class="nav-block__input-wrapper" for="nav-block__input">
-    <button class="nav-block__input-close-btn"></button>
+    <button
+      class="nav-block__input-close-btn"
+      (click)="clearSearchString()"
+    ></button>
     <input
       #input
       id="nav-block__input"

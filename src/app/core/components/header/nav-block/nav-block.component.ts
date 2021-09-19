@@ -125,4 +125,10 @@ export class NavBlockComponent implements OnInit {
     this.store.dispatch(new SelectSubCategory(subCategory));
     this.store.dispatch(new HideSubCategoryList());
   }
+
+  public clearSearchString() {
+    this.searchString = '';
+    this.subcategories = null;
+    this.store.dispatch(new HideSubCategoryList());
+  }
 }
