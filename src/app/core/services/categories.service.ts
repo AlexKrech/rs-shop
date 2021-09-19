@@ -53,4 +53,10 @@ export class CategoriesService {
       `http://localhost:3004/goods/category/${categoryId}/${subCategoryId}`
     );
   }
+
+  public fethGoodsBySearchString(searchQuery: string): Observable<IShopItem[]> {
+    return this.http.get<IShopItem[]>(
+      `http://localhost:3004/goods/search?text=${searchQuery}`
+    );
+  }
 }

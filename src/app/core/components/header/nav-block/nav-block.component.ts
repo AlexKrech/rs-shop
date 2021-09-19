@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
   FethCategories,
@@ -32,7 +33,7 @@ export class NavBlockComponent implements OnInit {
 
   public searchString: string = '';
 
-  constructor(private store: Store<IAppState>) {}
+  constructor(private store: Store<IAppState>, private router: Router) {}
 
   public ngOnInit(): void {
     document.body.addEventListener('click', this.hideCatalog.bind(this));
@@ -130,5 +131,15 @@ export class NavBlockComponent implements OnInit {
     this.searchString = '';
     this.subcategories = null;
     this.store.dispatch(new HideSubCategoryList());
+  }
+
+  public searchGoodsBySearchString(searchString: string) {
+    this.store.dispatch(new HideSubCategoryList());
+
+    this.router.navigate(['/search'], {
+      queryParams: {
+        text: searchString,
+      },
+    });
   }
 }

@@ -19,10 +19,12 @@ import { MainComponent } from './shop-feature/pages/main/main.component';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 import { CatalogEffects } from './core/store/effects/catalog.effects';
 import { CategoryItemsComponent } from './shop-feature/pages/category-items/category-items.component';
+import { SearchResultItemsComponent } from './shop-feature/pages/search-result-items/search-result-items.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
+  { path: 'search', component: SearchResultItemsComponent, pathMatch: 'full' },
   { path: ':category', component: CategoryItemsComponent },
   { path: '**', component: NotFoundComponent },
 ];
