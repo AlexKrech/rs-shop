@@ -11,6 +11,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { SubCategoriesComponent } from './components/sub-categories/sub-categories.component';
 import { OrderBasketComponent } from './pages/order-basket/order-basket.component';
+import { SelectedProductsComponent } from './pages/selected-products/selected-products.component';
+import { ViewedGoodsComponent } from './pages/viewed-goods/viewed-goods.component';
+import { EntranceModalComponent } from './components/entrance-modal/entrance-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { OrderBasketComponent } from './pages/order-basket/order-basket.componen
     CatalogComponent,
     SubCategoriesComponent,
     OrderBasketComponent,
+    SelectedProductsComponent,
+    ViewedGoodsComponent,
+    EntranceModalComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [
@@ -30,6 +36,8 @@ import { OrderBasketComponent } from './pages/order-basket/order-basket.componen
     ChooseLocationComponent,
     NotFoundComponent,
     OrderBasketComponent,
+    SelectedProductsComponent,
+    ViewedGoodsComponent,
   ],
 })
 export class CoreModule {}

@@ -21,11 +21,20 @@ import { CatalogEffects } from './core/store/effects/catalog.effects';
 import { CategoryItemsComponent } from './shop-feature/pages/category-items/category-items.component';
 import { SearchResultItemsComponent } from './shop-feature/pages/search-result-items/search-result-items.component';
 import { OrderBasketComponent } from './core/pages/order-basket/order-basket.component';
+import { SelectedProductsComponent } from './core/pages/selected-products/selected-products.component';
+import { ViewedGoodsComponent } from './core/pages/viewed-goods/viewed-goods.component';
+import { AccountEffects } from './core/store/effects/account.effects';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
   { path: 'order', component: OrderBasketComponent, pathMatch: 'full' },
+  {
+    path: 'selected-products',
+    component: SelectedProductsComponent,
+    pathMatch: 'full',
+  },
+  { path: 'viewed', component: ViewedGoodsComponent, pathMatch: 'full' },
   { path: 'search', component: SearchResultItemsComponent, pathMatch: 'full' },
   { path: ':category', component: CategoryItemsComponent },
   { path: '**', component: NotFoundComponent },
@@ -42,7 +51,7 @@ const appRoutes: Routes = [
     ShopFeatureModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([LocationEffects, CatalogEffects]),
+    EffectsModule.forRoot([LocationEffects, CatalogEffects, AccountEffects]),
     !environment.production
       ? StoreDevtoolsModule.instrument({ logOnly: environment.production })
       : [],

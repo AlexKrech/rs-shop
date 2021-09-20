@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { ShowAccountModal } from 'src/app/core/store/actions/account-modal.actions';
+import { CheckLogin, LogOut } from 'src/app/core/store/actions/account.actions';
 import {
   FethCategories,
   HideCatalog,
@@ -10,6 +12,11 @@ import {
   ShowCatalog,
   ShowSubCategoryList,
 } from 'src/app/core/store/actions/catalog.actions';
+import { selectAccountModalState } from 'src/app/core/store/selectors/account-modal.selector';
+import {
+  selectAccountData,
+  selectAccountState,
+} from 'src/app/core/store/selectors/account.selector';
 import {
   selectCategoriesList,
   selectIsSubCategoryListModalShowed,
@@ -34,6 +41,14 @@ export class NavBlockComponent implements OnInit {
   public searchString: string = '';
 
   public isAccountModalShowed = false;
+
+  public isLogined = this.store.select(selectAccountState);
+
+  public accountData = this.store.select(selectAccountData);
+
+  public isEnterenceAccountModalShowed = this.store.select(
+    selectAccountModalState
+  );
 
   constructor(private store: Store<IAppState>, private router: Router) {}
 
@@ -67,6 +82,8 @@ export class NavBlockComponent implements OnInit {
       .subscribe((isModalShowed) => {
         this.subCategoryListModalShowed = isModalShowed;
       });
+
+    this.store.dispatch(new CheckLogin());
   }
 
   public showCatalog(): void {
@@ -126,18 +143,18 @@ export class NavBlockComponent implements OnInit {
     this.store.dispatch(new HideSubCategoryList());
   }
 
-  public selectSubCategory(subCategory: ISubCategoryInfo) {
+  public selectSubCategory(subCategory: ISubCategoryInfo): void {
     this.store.dispatch(new SelectSubCategory(subCategory));
     this.store.dispatch(new HideSubCategoryList());
   }
 
-  public clearSearchString() {
+  public clearSearchString(): void {
     this.searchString = '';
     this.subcategories = null;
     this.store.dispatch(new HideSubCategoryList());
   }
 
-  public searchGoodsBySearchString(searchString: string) {
+  public searchGoodsBySearchString(searchString: string): void {
     this.store.dispatch(new HideSubCategoryList());
 
     this.router.navigate(['/search'], {
@@ -158,11 +175,17 @@ export class NavBlockComponent implements OnInit {
     }, 0);
   }
 
-  public hideMoreContacts() {
+  public hideMoreContacts(): void {
     this.isAccountModalShowed = false;
-    const moreContactsBtn = document.querySelector(
-      '.nav-block__account-btn'
-    );
+    const moreContactsBtn = document.querySelector('.nav-block__account-btn');
     moreContactsBtn?.classList.remove('dropdown-content_open');
+  }
+
+  public showEnterenceAccountModal(): void {
+    this.store.dispatch(new ShowAccountModal());
+  }
+
+  public outOfSystem(): void {
+    this.store.dispatch(new LogOut());
   }
 }

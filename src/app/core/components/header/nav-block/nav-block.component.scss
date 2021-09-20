@@ -266,6 +266,8 @@
   }
 
   &__account-modal-link {
+    cursor: pointer;
+    width: 100%;
     padding: 7px 0;
     padding-left: 20px;
     display: flex;
@@ -273,6 +275,9 @@
     align-items: center;
     text-decoration: none;
     color: black;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
   }
 
   &__account-modal-link:hover {

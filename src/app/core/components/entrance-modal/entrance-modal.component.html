@@ -1,0 +1,25 @@
+<div
+  class="entrance-modal__wrapper"
+  (click)="hideEnterenceAccountModal($event)"
+>
+  <div class="entrance-modal">
+    <h2>Вход</h2>
+    <label for="" class="entrance-modal__input-label">
+      Электронная почта
+      <input #emailInput type="email" class="entrance-modal__input" />
+    </label>
+    <label for="" class="entrance-modal__input-label">
+      Пароль
+      <input #passwordInput type="password" class="entrance-modal__input" />
+    </label>
+    <button
+      class="entrance-modal__entrance-button"
+      (click)="enterInSystem(emailInput.value, passwordInput.value)"
+    >
+      Войти
+    </button>
+    <button class="entrance-modal__link">Я не помню пароль</button>
+    <button class="entrance-modal__link">Регистрация</button>
+    <button class="entrance-modal__close-btn"></button>
+  </div>
+</div>
