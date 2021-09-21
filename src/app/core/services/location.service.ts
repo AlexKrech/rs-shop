@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { URL_TO_CITIES } from 'src/app/shared/consts';
 
-import { ILocationByIp } from 'src/app/shared/models/location-by-ip';
 import {
   ILocationResponseData,
   ILocationsBySearchString,
@@ -16,12 +15,6 @@ import { IAppState } from '../store/state/app.state';
 })
 export class LocationService {
   constructor(private http: HttpClient, private store: Store<IAppState>) {}
-
-  getLocationByIp() {
-    return this.http
-      .get<ILocationByIp>('http://ip-api.com/json/')
-      .pipe(map((data) => data.city));
-  }
 
   getLocationSearchString(searchString: string) {
     return this.http.get<ILocationsBySearchString>(URL_TO_CITIES).pipe(

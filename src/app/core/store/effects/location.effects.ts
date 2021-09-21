@@ -19,7 +19,7 @@ export class LocationEffects {
   chooseLocation = createEffect(() =>
     this.actions$.pipe(
       ofType<GetInitialLocation>(ELocationActions.GetInitialLocation),
-      switchMap(() => this.locationService.getLocationByIp()),
+      switchMap(() => of('Минск')),
       switchMap((data) => of(new GetInitialLocationSuccess(data)))
     )
   );
