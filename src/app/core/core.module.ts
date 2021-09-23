@@ -14,6 +14,7 @@ import { OrderBasketComponent } from './pages/order-basket/order-basket.componen
 import { SelectedProductsComponent } from './pages/selected-products/selected-products.component';
 import { ViewedGoodsComponent } from './pages/viewed-goods/viewed-goods.component';
 import { EntranceModalComponent } from './components/entrance-modal/entrance-modal.component';
+import { NavigationByCategoryComponent } from './components/navigation-by-category/navigation-by-category.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EntranceModalComponent } from './components/entrance-modal/entrance-mod
     SelectedProductsComponent,
     ViewedGoodsComponent,
     EntranceModalComponent,
+    NavigationByCategoryComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [

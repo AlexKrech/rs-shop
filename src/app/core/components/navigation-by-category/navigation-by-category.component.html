@@ -1,0 +1,9 @@
+<nav class="nav">
+  <u class="nav__categoryList">
+    <li class="nav__category" *ngFor="let category of categoryList | async">
+      <a class="nav__category-link" [routerLink]="['', category.id]">{{
+        category.name
+      }}</a>
+    </li>
+  </u>
+</nav>
