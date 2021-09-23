@@ -19,6 +19,7 @@ import {
 } from 'src/app/core/store/selectors/account.selector';
 import {
   selectCategoriesList,
+  selectIsCatalogModalShowed,
   selectIsSubCategoryListModalShowed,
 } from 'src/app/core/store/selectors/catalog.selector';
 import { ICategory, ISubCategoryInfo } from 'src/app/core/store/state.models';
@@ -31,6 +32,8 @@ import { IAppState } from 'src/app/core/store/state/app.state';
 })
 export class NavBlockComponent implements OnInit {
   public catalogShowed = false;
+
+  public catalogShowedObs = this.store.pipe(select(selectIsCatalogModalShowed));
 
   public subCategoryListModalShowed = false;
 

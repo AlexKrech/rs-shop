@@ -64,7 +64,10 @@
     mat-stroked-button
     (click)="showCatalog()"
   >
-    <div *ngIf="!catalogShowed" class="nav-block__catalog-btn-ico">
+    <div
+      *ngIf="(catalogShowedObs | async) === false"
+      class="nav-block__catalog-btn-ico"
+    >
       <div class="nav-block__catalog-btn-ico-inner-elem-wrapper">
         <div class="nav-block__catalog-btn-ico-inner-elem"></div>
         <div class="nav-block__catalog-btn-ico-inner-elem"></div>
@@ -72,7 +75,10 @@
         <div class="nav-block__catalog-btn-ico-inner-elem"></div>
       </div>
     </div>
-    <button *ngIf="catalogShowed" class="nav-block__input-close-btn"></button>
+    <button
+      *ngIf="catalogShowedObs | async"
+      class="nav-block__input-close-btn"
+    ></button>
 
     <span>Каталог товалов</span>
   </button>

@@ -1,6 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { SelectSubCategory } from '../../store/actions/catalog.actions';
+import {
+  HideCatalog,
+  SelectSubCategory,
+} from '../../store/actions/catalog.actions';
 import {
   selecSelectedCategory,
   selectIsSubCategoryListModalShowed,
@@ -25,6 +28,6 @@ export class SubCategoriesComponent {
 
   public selectSubCategory(subCategory: ISubCategoryInfo) {
     this.store.dispatch(new SelectSubCategory(subCategory));
-    //  this.store.dispatch(new HideLocationModal());
+    this.store.dispatch(new HideCatalog());
   }
 }
