@@ -89,7 +89,7 @@
       placeholder="Поиск товаров"
       [(ngModel)]="searchString"
       (input)="searchCategory(input.value)"
-      (focus)="showSubCategoryList()"
+      (focus)="showSubCategoryList(input.value)"
     />
     <button
       class="nav-block__input-search-bth"

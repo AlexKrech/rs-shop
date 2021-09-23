@@ -128,8 +128,10 @@ export class NavBlockComponent implements OnInit {
     }
   }
 
-  public showSubCategoryList(): void {
-    this.store.dispatch(new ShowSubCategoryList());
+  public showSubCategoryList(searchString: string): void {
+    if (searchString.length >= 2) {
+      this.store.dispatch(new ShowSubCategoryList());
+    }
   }
 
   public hideSubCategoryList(event: Event): void {
