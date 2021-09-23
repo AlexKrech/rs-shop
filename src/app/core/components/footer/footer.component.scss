@@ -1,0 +1,111 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  background-color: #f7f8fa;
+}
+
+.footer {
+  max-width: 1090px;
+
+  &__contact-block-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-top: 1px solid rgba(213, 215, 219, 0.5);
+  }
+
+  &__contact-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 10px;
+
+    padding: 0 10px;
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+  }
+
+  &__contact_hovered:hover {
+    cursor: pointer;
+    color: #e52e6b;
+  }
+
+  &__socio-link-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(23, 35, 38, 0.05);
+    margin: 0 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    transition: all 0.2s ease-out;
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 19px;
+    text-align: center;
+    color: rgb(171, 174, 179);
+  }
+}
+
+.viber-ico {
+  color: #7c53a6;
+}
+.life-ico {
+  color: #052992;
+}
+
+.telegram-ico {
+  fill: white;
+  color: #39a9e0;
+}
+
+.footer {
+  &__contact_hovered:hover .viber-ico,
+  &__contact_hovered:hover .telegram-ico {
+    color: #e52e6b;
+  }
+}
+
+.vk-ico-wrapper:hover,
+.facebook-ico-wrapper:hover {
+  background-color: rgb(68, 125, 189);
+}
+.youtube-ico-wrapper:hover {
+  background-color: rgb(255, 38, 56);
+}
+.ok-ico-wrapper:hover {
+  background-color: rgb(250, 144, 25);
+}
+
+.instagram-ico-wrapper:hover {
+  background-image: linear-gradient(
+    169.11deg,
+    rgb(249, 203, 118) 12.38%,
+    rgb(234, 30, 89) 53.89%,
+    rgb(192, 34, 144) 70.24%,
+    rgb(88, 67, 199) 97.18%
+  );
+}
+
+.vk-ico-wrapper:hover .vk-ico,
+.facebook-ico-wrapper:hover .facebook-ico,
+.youtube-ico-wrapper:hover .youtube-ico,
+.ok-ico-wrapper:hover .ok-ico,
+.instagram-ico-wrapper:hover .instagram-ico {
+  fill: #fff;
+}

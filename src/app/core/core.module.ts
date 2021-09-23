@@ -15,6 +15,7 @@ import { SelectedProductsComponent } from './pages/selected-products/selected-pr
 import { ViewedGoodsComponent } from './pages/viewed-goods/viewed-goods.component';
 import { EntranceModalComponent } from './components/entrance-modal/entrance-modal.component';
 import { NavigationByCategoryComponent } from './components/navigation-by-category/navigation-by-category.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NavigationByCategoryComponent } from './components/navigation-by-catego
     ViewedGoodsComponent,
     EntranceModalComponent,
     NavigationByCategoryComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [
@@ -40,6 +42,7 @@ import { NavigationByCategoryComponent } from './components/navigation-by-catego
     OrderBasketComponent,
     SelectedProductsComponent,
     ViewedGoodsComponent,
+    FooterComponent,
   ],
 })
 export class CoreModule {}
